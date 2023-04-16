@@ -14,47 +14,57 @@ public class Main {
         System.out.println("How many days before payday?");
         int daysBeforeSalary = scanner.nextInt();
 
-        System.out.println("Input a command. Available  commands: convert and advice.");
-        String command = scanner.next();
+        while(true){//настройте бесконечный цикл здесь
+            System.out.println("What do you want to do? ");
+            System.out.println("1 - Convert currency");
+            System.out.println("2 - Get an advice");
+            System.out.println("0 - Exit");//menu
 
-        if (command.equals("convert")) {
-            System.out.println("With currency do you want to convert rubles into: USD, EUR, JPY.");
-            String currency = scanner.next();
+            int command = scanner.nextInt();
 
-            if (currency.equals("USD")) {
-                System.out.println("Your saving in dollars: " + moneyBeforeSalary / rateUSD);
-            } else if (currency.equals("EUR")) {
-                System.out.println("Your saving in euro: " + moneyBeforeSalary / rateEUR);
-            } else if (currency.equals("JPY")) {
-                System.out.println("Your saving in yen: " + moneyBeforeSalary / rateJPY);
-            } else {
-                System.out.println("Currency not supported.");
-            }
+            if (command == 1) {
+                System.out.println("With currency do you want to convert rubles into? Available Options: 1 - USD, 2 - EUR or 3 - JPY.");
+                int currency = scanner.nextInt();
 
-        } else if (command.equals("advice")) {
-            if (moneyBeforeSalary < 3000) {
-                System.out.println("It's better to eat at home today. Save money and you will make it to your next paycheck!");
-            } else if (moneyBeforeSalary < 10000) {
-                if (daysBeforeSalary < 10) {
-                    System.out.println("Okay, it's time to go to McDonald's!");
+                if (currency == 1) {
+                    System.out.println("Your saving in dollars: " + moneyBeforeSalary / rateUSD);
+                } else if (currency == 2) {
+                    System.out.println("Your saving in euro: " + moneyBeforeSalary / rateEUR);
+                } else if (currency == 3) {
+                    System.out.println("Your saving in yen: " + moneyBeforeSalary / rateJPY);
                 } else {
+                    System.out.println("Currency not supported");
+                }
+
+            } else if (command == 2) {
+                if (moneyBeforeSalary < 3000) {
                     System.out.println("It's better to eat at home today. Save money and you will make it to your next paycheck!");
-                }
-            } else if (moneyBeforeSalary < 30000) {
-                if (daysBeforeSalary < 10) {
-                    System.out.println("Great! Get some dollars and go have dinner at a fancy place. :)");
+                } else if (moneyBeforeSalary < 10000) {
+                    if (daysBeforeSalary < 10) {
+                        System.out.println("Okay, it's time to go to McDonald's.");
+                    } else {
+                        System.out.println("It's better to eat at home today. Save money and you will make it to your next paycheck!");
+                    }
+                } else if (moneyBeforeSalary < 30000) {
+                    if (daysBeforeSalary < 10) {
+                        System.out.println("Not bad! Get some dollars and go have dinner at a great place. :)");
+                    } else {
+                        System.out.println("Okay, it's time to go to McDonald's.!");
+                    }
                 } else {
-                    System.out.println("Okay, it's time to go to McDonald's!");
+                    if (daysBeforeSalary < 10) {
+                        System.out.println("Great! Order some crabs!");
+                    } else {
+                        System.out.println("Not bad! Get some dollars and go have dinner at a great place. :)");
+                    }
                 }
+            } else if (command == 0) {
+                System.out.println("Exit");
+                break;
             } else {
-                if (daysBeforeSalary < 10) {
-                    System.out.println("Great! Order some crabs!");
-                } else {
-                    System.out.println("Not bad! Get some dollars and go have dinner at a great place. :)");
-                }
+                System.out.println("Sorry, there is no such command yet.");
             }
-        } else {
-            System.out.println("Sorry, there is no such command yet.");
         }
     }
 }
+
